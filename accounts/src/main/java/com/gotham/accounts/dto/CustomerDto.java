@@ -1,5 +1,6 @@
 package com.gotham.accounts.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -7,6 +8,10 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
+@Schema(
+        name = "Customer",
+        description = "Schema to hold Customer and Account information"
+)
 public class CustomerDto {
 
     @NotNull(message = "Name cannot be null or empty")
