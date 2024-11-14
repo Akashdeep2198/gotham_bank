@@ -6,6 +6,7 @@ import com.gotham.accounts.dto.ResponseDto;
 import com.gotham.accounts.service.AccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
@@ -47,7 +48,7 @@ public class AccountController {
             description = "REST API to Fetch Customer and Account details inside Gotham Bank"
     )
     @ApiResponse(
-            responseCode = "201",
+            responseCode = "200",
             description = "HTTP Status OK"
     )
     @GetMapping("/fetch")
@@ -62,6 +63,16 @@ public class AccountController {
             summary = "Update Account REST API",
             description = "REST API to Update Customer and Account inside Gotham Bank"
     )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error"
+            )
+    })
     @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateAccountDetails(@Valid @RequestBody CustomerDto customerDto) {
         boolean isUpdated = accountService.updateAccount(customerDto);
@@ -80,6 +91,16 @@ public class AccountController {
             summary = "Delete Account REST API",
             description = "REST API to Delete Customer and Account details inside Gotham Bank"
     )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error"
+            )
+    })
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDto> deleteAccountDetails(@RequestParam
                                                             @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
