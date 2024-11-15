@@ -4,15 +4,15 @@ spring:
   application:
     name: accounts
   datasource:
-    url: jdbc:h2:mem:accounts
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: ''
+    url: jdbc:mysql://localhost:3306/accounts
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
   h2:
     console:
       enabled: true
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
     show-sql: true
